@@ -17,6 +17,9 @@ class FlutterWebFrame extends StatefulWidget {
   /// Background color in white space
   final Color? backgroundColor;
 
+  /// Background image in white space
+  final DecorationImage? backgroundImage;
+
   /// Maximum size
   final Size maximumSize;
 
@@ -28,6 +31,7 @@ class FlutterWebFrame extends StatefulWidget {
     required this.builder,
     this.enabled = true,
     this.backgroundColor,
+    this.backgroundImage,
     required this.maximumSize,
     this.clipBehavior = Clip.none,
   }) : super(key: key);
@@ -85,7 +89,10 @@ class _FlutterWebFrameState extends State<FlutterWebFrame> {
     }
 
     return Container(
-      color: widget.backgroundColor ?? Theme.of(context).dividerColor,
+      decoration: BoxDecoration(
+        color: widget.backgroundColor ?? Theme.of(context).dividerColor,
+        image: widget.backgroundImage,
+      ),
       child: AnimatedSwitcher(
         duration: const Duration(milliseconds: 400),
         child: MediaQueryObserver(
